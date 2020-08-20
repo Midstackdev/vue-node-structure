@@ -1,19 +1,25 @@
 import express from 'express'
-import dotenv from 'dotenv'
 
 import { registerRoutes } from './routes'
+import { setEnvironment } from './config/env'
 
-const env = dotenv.config()
 
 const app = express()
 const port = process.env.PORT
 
+setEnvironment(app)
 registerRoutes(app)
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  if(process.env.NODE_ENV !== 'production') {
+    return res.send('Running in development mode!')
+  }else {
+    return res.sendFile('index.html', {
+        root: __dirname + '/../dist/'
+    })
+  }
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`This app listening at http://localhost:${port} in ${process.env.NODE_ENV} mode!`)
 })
