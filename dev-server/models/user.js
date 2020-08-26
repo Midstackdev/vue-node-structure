@@ -37,6 +37,16 @@ userSchema.statics.passwordMatches = (password, hash) => {
     return bcrypt.compareSync(password, hash)
 }
 
+userSchema.statics.showData = (user) => {
+  return {
+    email: user.email,
+    firstname: user.name,
+    lastname: user.lastname,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  }
+}
+
 userSchema.pre('save', function(next) {
     this.email = this.email.toLowerCase()
     this.firstname = this.firstname.toLowerCase()

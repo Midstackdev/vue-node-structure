@@ -20,18 +20,22 @@ var _loginController = require('./login-controller');
 
 var _loginController2 = _interopRequireDefault(_loginController);
 
+var _auth = require('../../services/auth');
+
+var auth = _interopRequireWildcard(_auth);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
 
-router.post('/auth', controller.index);
+router.get('/auth', auth.requireLogin, controller.index);
 
 router.post('/register', _registerController2.default);
 
 router.post('/login', _loginController2.default);
 
-router.post('/logout', controller.logout);
+router.post('/logout', auth.requireLogin, controller.logout);
 
 exports.default = router;
