@@ -46,6 +46,7 @@ function setDevEnv(app) {
 
 function setProdEnv(app) {
     process.env.NODE_ENV = 'production';
+    process.env.DB_URL = 'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@cluster0.2mon0.mongodb.net/' + process.env.DB_NAME + '?retryWrites=true&w=majority';
     app.use(_bodyParser2.default.json());
-    app.use(_express2.default.static(__dirname + '/../dist'));
+    app.use(_express2.default.static(__dirname + '/../../dist'));
 }

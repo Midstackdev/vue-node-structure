@@ -40,7 +40,7 @@ userSchema.statics.passwordMatches = (password, hash) => {
 userSchema.statics.showData = (user) => {
   return {
     email: user.email,
-    firstname: user.name,
+    firstname: user.firstname,
     lastname: user.lastname,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,

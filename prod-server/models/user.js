@@ -54,7 +54,7 @@ userSchema.statics.passwordMatches = function (password, hash) {
 userSchema.statics.showData = function (user) {
     return {
         email: user.email,
-        firstname: user.name,
+        firstname: user.firstname,
         lastname: user.lastname,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt
